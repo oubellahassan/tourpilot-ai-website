@@ -76,7 +76,7 @@ section{padding:7rem 0;position:relative}
 .section-header .section-desc{margin:0 auto}
 
 /* WHY TOURPILOT */
-.why-section{padding:7rem 0;background:transparent}
+.why-section{padding:7rem 0;background:var(--bg);background-image:url('assets/paper-gold.png');background-size:800px}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .why-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.8rem 2rem;text-align:center;transition:all var(--transition);position:relative;overflow:hidden}
 .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
