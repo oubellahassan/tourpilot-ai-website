@@ -115,24 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeLightbox();
   });
 
-  // ── CONTACT FORM ──
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const company = document.getElementById('company')?.value.trim() || '';
-      const interest = document.getElementById('interest').value;
-      const message = document.getElementById('message').value.trim();
 
-      const subject = encodeURIComponent(`TourPilot AI Inquiry — ${interest || 'General'}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nInterest: ${interest}\n\nMessage:\n${message}`
-      );
 
-      window.location.href = `mailto:has.oubella@yahoo.com?subject=${subject}&body=${body}`;
-    });
-  }
 
 });
