@@ -145,6 +145,9 @@ section{padding:7rem 0;position:relative}
 .feature-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
 .feature-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);border-color:var(--gold)}
 .feature-card:hover::before{opacity:1}
+.feature-bullets{list-style:none;margin:.8rem 0 0;padding:0;text-align:left}
+.feature-bullets li{font-size:.82rem;color:var(--text-muted);padding:.3rem 0 .3rem 1.2rem;position:relative;line-height:1.5}
+.feature-bullets li::before{content:'✓';position:absolute;left:0;color:var(--gold-dark);font-weight:700;font-size:.75rem}
 .feature-icon{width:48px;height:48px;border-radius:14px;background:var(--gold-bg);border:1px solid rgba(201,153,90,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
 .feature-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
 .feature-card p{font-size:.86rem;color:var(--text-muted);line-height:1.65}
