@@ -93,8 +93,8 @@
       </div>
       <div class="why-card reveal reveal-d1">
         <div class="why-icon">📱</div>
-        <h3>Mobile & Extensions</h3>
-        <p>Access TourPilot from anywhere with the React Native companion app, Chrome extension for email capture, and Outlook Add-in for seamless Microsoft 365 integration.</p>
+        <h3>Mobile-Ready Architecture</h3>
+        <p>TourPilot AI's responsive design works beautifully on any device. Need a native app or browser extension? Our architecture supports custom mobile and extension development.</p>
       </div>
       <div class="why-card reveal reveal-d2">
         <div class="why-icon">💎</div>
@@ -147,28 +147,6 @@
 </section>
 
 <!-- METRICS BAND -->
-<div class="metrics-band">
-  <div class="container">
-    <div class="metrics-grid">
-      <div class="metric reveal">
-        <div class="metric-value"><span class="counter" data-target="80">0</span>%</div>
-        <div class="metric-label">Less Time on Quotes</div>
-      </div>
-      <div class="metric reveal reveal-d1">
-        <div class="metric-value"><span class="counter" data-target="12">0</span>+</div>
-        <div class="metric-label">Modules Included</div>
-      </div>
-      <div class="metric reveal reveal-d2">
-        <div class="metric-value"><span class="counter" data-target="6">0</span></div>
-        <div class="metric-label">Integrations</div>
-      </div>
-      <div class="metric reveal reveal-d3">
-        <div class="metric-value"><span class="counter" data-target="100">0</span>%</div>
-        <div class="metric-label">White-Label Ready</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- PLATFORM: Sales & CRM -->
 <section class="platform-section" id="platform">
@@ -331,7 +309,7 @@
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="price-name">Starter License</div>
-        <div class="price-amount">$1,499</div>
+        <div class="price-amount">—</div>
         <div class="price-desc">One-time · Deploy under your brand</div>
         <ul class="price-features">
           <li>Full source code access</li>
@@ -340,11 +318,11 @@
           <li>30 days of email support</li>
           <li>Community updates for 6 months</li>
         </ul>
-        <a href="#contact" class="price-btn price-btn-outline">Get Started</a>
+        <a href="#contact" class="price-btn price-btn-outline">Request Pricing</a>
       </div>
       <div class="price-card highlight reveal reveal-d1">
         <div class="price-name">Growth License</div>
-        <div class="price-amount">$4,999</div>
+        <div class="price-amount">—</div>
         <div class="price-desc">One-time · White-label with priority support</div>
         <ul class="price-features">
           <li>Everything in Starter</li>
@@ -354,11 +332,11 @@
           <li>2 hours of custom development included</li>
           <li>Priority access to future updates</li>
         </ul>
-        <a href="#contact" class="price-btn price-btn-primary">Get Started</a>
+        <a href="#contact" class="price-btn price-btn-primary">Request Pricing</a>
       </div>
       <div class="price-card reveal reveal-d2">
         <div class="price-name">Full Acquisition</div>
-        <div class="price-amount">$18K<small>–$25K</small></div>
+        <div class="price-amount">—</div>
         <div class="price-desc">Complete ownership · IP transfer · Partnership</div>
         <ul class="price-features">
           <li>Everything in Growth</li>
@@ -383,40 +361,27 @@
       <h2 class="section-title">Ready to transform your travel business?</h2>
       <p class="section-desc">Whether you want a walkthrough, have questions, or are ready to acquire — I'd love to hear from you.</p>
     </div>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <h3>📧 Email</h3>
-        <p><a href="mailto:has.oubella@yahoo.com">has.oubella@yahoo.com</a></p>
-        <h3>⏱️ Response Time</h3>
-        <p>Typically within 2–4 hours during business hours (GMT+1)</p>
-        <h3>🌍 Based In</h3>
-        <p>Morocco — serving clients globally</p>
-        <h3>🎯 What to Expect</h3>
-        <p>Book a demo and I'll walk you through the live platform, answer technical questions, and discuss customization options.</p>
-        <h3>🔒 Confidentiality</h3>
-        <p>All enquiries are confidential. NDA available upon request.</p>
+    <form class="contact-form-centered reveal" id="contactForm" action="https://formspree.io/f/xpwzgkpj" method="POST">
+      <div class="form-row">
+        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Full name" required></div>
+        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@company.com" required></div>
       </div>
-      <form class="contact-form reveal reveal-d1" id="contactForm" action="mailto:has.oubella@yahoo.com" method="POST" enctype="text/plain">
-        <div class="form-row">
-          <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Full name" required></div>
-          <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@company.com" required></div>
-        </div>
-        <div class="form-group"><label for="company">Company / Agency</label><input type="text" id="company" name="company" placeholder="Your travel company name"></div>
-        <div class="form-group">
-          <label for="interest">I'm Interested In</label>
-          <select id="interest" name="interest">
-            <option value="">Select an option...</option>
-            <option value="Platform Walkthrough / Demo">Platform Walkthrough / Demo</option>
-            <option value="Starter License — $1,499">Starter License — $1,499</option>
-            <option value="Growth License — $4,999">Growth License — $4,999</option>
-            <option value="Full Acquisition — $18K–$25K">Full Acquisition — $18K–$25K</option>
-            <option value="Custom Development">Custom Development / Integration</option>
-          </select>
-        </div>
-        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your business, current challenges, and what you're looking for..." rows="5"></textarea></div>
-        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Book a Demo →</button>
-      </form>
-    </div>
+      <div class="form-group"><label for="company">Company / Agency</label><input type="text" id="company" name="company" placeholder="Your travel company name"></div>
+      <div class="form-group">
+        <label for="interest">I'm Interested In</label>
+        <select id="interest" name="interest">
+          <option value="">Select an option...</option>
+          <option value="Platform Walkthrough / Demo">Platform Walkthrough / Demo</option>
+          <option value="Starter License">Starter License</option>
+          <option value="Growth License">Growth License</option>
+          <option value="Full Acquisition">Full Acquisition</option>
+          <option value="Custom Development">Custom Development / Integration</option>
+        </select>
+      </div>
+      <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your business, current challenges, and what you're looking for..." rows="5"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
+      <p class="form-note">All enquiries are confidential. We typically respond within 24 hours.</p>
+    </form>
   </div>
 </section>
 
