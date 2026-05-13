@@ -18,18 +18,15 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 /* LOADER */
 .loader{position:fixed;inset:0;z-index:9999;background:var(--white);display:flex;align-items:center;justify-content:center;transition:opacity .5s,visibility .5s}
 .loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.loader-inner{display:flex;align-items:center;gap:.8rem;animation:breathe 1.5s ease-in-out infinite}
-.loader-icon{height:42px}
-.loader-brand{font-size:1.8rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
-.brand-ai{color:var(--gold);font-weight:900;margin-left:1px}
+.loader-logo{height:48px;animation:breathe 1.5s ease-in-out infinite}
 @keyframes breathe{0%,100%{opacity:.3}50%{opacity:1}}
 
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 0;transition:all .35s}
 .nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
 .nav-inner{max-width:1160px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-.5px}
-.nav-icon{height:28px}
+.nav-brand{text-decoration:none}
+.nav-logo-img{height:36px}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
 .nav-links a{color:var(--text-muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .3s}
 .nav-links a:hover{color:var(--text)}
@@ -74,6 +71,15 @@ section{padding:6rem 0;position:relative}
 .section-desc{font-size:1.02rem;color:var(--text-muted);max-width:540px;line-height:1.75}
 .section-header{text-align:center;margin-bottom:3.5rem}
 .section-header .section-desc{margin:0 auto}
+
+/* WHY TOURPILOT */
+.why-section{background:var(--bg-warm);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.why-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;transition:all var(--transition)}
+.why-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--gold)}
+.why-icon{font-size:2.2rem;margin-bottom:1rem}
+.why-card h3{font-size:1.15rem;font-weight:800;color:var(--text);margin-bottom:.6rem}
+.why-card p{font-size:.9rem;color:var(--text-muted);line-height:1.7}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}
@@ -182,8 +188,7 @@ section{padding:6rem 0;position:relative}
 
 /* FOOTER */
 .footer{padding:3rem 0 2rem;border-top:1px solid var(--border-light);text-align:center}
-.footer-brand{font-size:1.3rem;font-weight:800;color:var(--text);letter-spacing:-.5px;display:inline-flex;align-items:center;gap:.4rem;margin-bottom:.5rem}
-.footer-icon{height:24px}
+.footer-logo-img{height:36px;margin-bottom:.8rem}
 .footer-links{display:flex;gap:2rem;justify-content:center;margin:1rem 0}
 .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:.3s}
 .footer-links a:hover{color:var(--brand)}
@@ -200,7 +205,7 @@ section{padding:6rem 0;position:relative}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
 
 /* RESPONSIVE */
-@media(max-width:1024px){.features-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}.ai-grid{grid-template-columns:repeat(2,1fr)}.price-card.highlight{transform:none}}
+@media(max-width:1024px){.features-grid,.pricing-grid,.why-grid{grid-template-columns:repeat(2,1fr)}.ai-grid{grid-template-columns:repeat(2,1fr)}.price-card.highlight{transform:none}}
 @media(max-width:768px){
   .nav-links{display:none}.nav-toggle{display:flex}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
