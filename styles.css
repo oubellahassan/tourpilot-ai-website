@@ -78,7 +78,7 @@ section{padding:7rem 0;position:relative}
 /* WHY TOURPILOT */
 .why-section{padding:7rem 0;background:var(--bg);background-image:url('assets/paper-gold.png');background-size:800px}
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.why-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.8rem 2rem;text-align:center;transition:all var(--transition);position:relative;overflow:hidden}
+.why-card{background:linear-gradient(135deg, #fdf8f0 0%, #f5ede0 100%);border:1px solid rgba(193,167,118,.25);border-radius:var(--radius-lg);padding:2.8rem 2rem;text-align:center;transition:all var(--transition);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(26,26,24,.04)}
 .why-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
 .why-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-6px);border-color:var(--gold)}
 .why-card:hover::before{opacity:1}
@@ -141,7 +141,7 @@ section{padding:7rem 0;position:relative}
 /* FEATURES */
 .features-section{background:var(--bg);background-image:url('assets/paper-gold.png');background-size:800px}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-.feature-card{background:var(--bg);background-image:url('assets/paper-gold.png');background-size:600px;border:1px solid var(--border);border-radius:var(--radius);padding:2rem 1.8rem;transition:all var(--transition);position:relative;overflow:hidden}
+.feature-card{background:linear-gradient(135deg, #f0f4ef 0%, #e8ede6 100%);border:1px solid rgba(42,54,42,.12);border-radius:var(--radius);padding:2rem 1.8rem;transition:all var(--transition);position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(26,26,24,.04)}
 .feature-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent-gradient);opacity:0;transition:opacity .4s}
 .feature-card:hover{box-shadow:var(--shadow);transform:translateY(-4px);border-color:var(--gold)}
 .feature-card:hover::before{opacity:1}
