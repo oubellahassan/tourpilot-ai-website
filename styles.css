@@ -171,6 +171,17 @@ section{padding:7rem 0;position:relative}
 .price-btn-outline{background:transparent;color:var(--brand);border:1px solid var(--border)}
 .price-btn-outline:hover{border-color:var(--gold);color:var(--gold-dark)}
 
+/* CTA BAND */
+.cta-band{padding:5rem 0;background:var(--dark);background-image:url('assets/dark-luxury.png');background-size:cover;text-align:center}
+.cta-content{max-width:700px;margin:0 auto}
+.cta-band .section-label{color:var(--gold)}
+.cta-headline{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:#fff;line-height:1.25;margin:.8rem 0 1.2rem}
+.cta-subtext{color:rgba(255,255,255,.7);font-size:1.05rem;line-height:1.7;margin-bottom:2rem}
+.cta-stats{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem}
+.cta-stat{display:flex;flex-direction:column;align-items:center}
+.cta-stat-value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.cta-stat-label{font-size:.78rem;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;margin-top:.3rem}
+
 /* CONTACT */
 .contact-section{background:var(--bg);background-image:url('assets/paper-gold.png');background-size:800px}
 .contact-form-centered{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:1.1rem}
