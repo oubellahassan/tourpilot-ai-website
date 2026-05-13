@@ -7,17 +7,25 @@
   <meta name="keywords" content="tour operator software, DMC software, travel agency software, itinerary builder, travel management platform, travel CRM">
   <title>TourPilot AI — Tour Operator & DMC Software | Build, Sell & Manage Travel</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>✈️</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧭</text></svg>">
 </head>
 <body>
 
 <!-- LOADER -->
-<div class="loader" id="loader"><span class="loader-brand">TourPilot<span class="loader-ai">AI</span></span></div>
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <img src="assets/icon.png" alt="" class="loader-icon">
+    <span class="loader-brand">TourPilot<span class="brand-ai">AI</span></span>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-brand">TourPilot<span class="brand-ai">AI</span></a>
+    <a href="#" class="nav-brand">
+      <img src="assets/icon.png" alt="" class="nav-icon">
+      <span>TourPilot<span class="brand-ai">AI</span></span>
+    </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#benefits">Why TourPilot</a></li>
       <li><a href="#platform">Platform</a></li>
@@ -33,22 +41,32 @@
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div class="hero-bg-image"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span> Built for Tour Operators & DMCs</div>
-    <h1>Stop juggling spreadsheets. <span class="accent">Start closing trips.</span></h1>
+    <h1>Stop juggling spreadsheets. <br><span class="accent">Start closing trips.</span></h1>
     <p class="hero-sub">TourPilot AI replaces your scattered Excel files, email threads, and disconnected tools with one AI-powered platform — so you can build itineraries faster, manage suppliers smarter, and grow revenue.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Book a Free Demo →</a>
-      <a href="#platform" class="btn btn-outline">See How It Works</a>
+      <a href="#platform" class="btn btn-outline-hero">See How It Works</a>
     </div>
     <div class="hero-proof">
-      <span>✓ 140K+ lines of production code</span>
-      <span>✓ 12+ integrated modules</span>
-      <span>✓ White-label ready</span>
+      <div class="proof-item"><span class="proof-number">140K+</span><span class="proof-label">Lines of Code</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-item"><span class="proof-number">12+</span><span class="proof-label">Modules</span></div>
+      <div class="proof-divider"></div>
+      <div class="proof-item"><span class="proof-number">100%</span><span class="proof-label">White-Label</span></div>
     </div>
   </div>
-  <div class="hero-image">
-    <img src="assets/01_sales_dashboard.png" alt="TourPilot AI sales dashboard — real-time revenue, pipeline, and conversion analytics" loading="eager">
+</section>
+
+<!-- PRODUCT SHOWCASE (floating dashboard) -->
+<section class="showcase">
+  <div class="container">
+    <div class="showcase-frame reveal">
+      <img src="assets/01_sales_dashboard.png" alt="TourPilot AI sales dashboard — real-time revenue, pipeline, and conversion analytics" loading="eager">
+    </div>
   </div>
 </section>
 
@@ -97,19 +115,19 @@
 <div class="metrics-band">
   <div class="container">
     <div class="metrics-grid">
-      <div class="reveal">
+      <div class="metric reveal">
         <div class="metric-value"><span class="counter" data-target="80">0</span>%</div>
         <div class="metric-label">Less Time on Quotes</div>
       </div>
-      <div class="reveal reveal-d1">
+      <div class="metric reveal reveal-d1">
         <div class="metric-value"><span class="counter" data-target="12">0</span>+</div>
         <div class="metric-label">Modules Included</div>
       </div>
-      <div class="reveal reveal-d2">
+      <div class="metric reveal reveal-d2">
         <div class="metric-value"><span class="counter" data-target="6">0</span></div>
-        <div class="metric-label">Third-Party Integrations</div>
+        <div class="metric-label">Integrations</div>
       </div>
-      <div class="reveal reveal-d3">
+      <div class="metric reveal reveal-d3">
         <div class="metric-value"><span class="counter" data-target="100">0</span>%</div>
         <div class="metric-label">White-Label Ready</div>
       </div>
@@ -118,24 +136,24 @@
 </div>
 
 <!-- PLATFORM: Sales & CRM -->
-<section class="benefits-section" id="platform">
+<section class="platform-section" id="platform">
   <div class="container">
-    <div class="benefits-grid reveal">
-      <div class="benefits-text">
+    <div class="platform-grid reveal">
+      <div class="platform-text">
         <span class="section-label">Sales & CRM</span>
         <h3>Turn enquiries into confirmed bookings — without the spreadsheet chaos</h3>
-        <p>Track every lead from first contact to deposit received. TourPilot AI gives your sales team a complete view of every client interaction, with automated follow-ups and conversion tracking — so no booking slips through the cracks.</p>
-        <ul class="benefits-list">
+        <p>Track every lead from first contact to deposit received. TourPilot AI gives your sales team a complete view of every client interaction, with automated follow-ups and conversion tracking.</p>
+        <ul class="check-list">
           <li>Visual drag-and-drop pipeline — see every deal at a glance</li>
           <li>Automatic lead capture from email, web forms, and partners</li>
           <li>Client segmentation by source, value tier, and destination</li>
           <li>One-click conversion analytics with real-time close rates</li>
         </ul>
-        <div class="benefit-callout">
+        <div class="result-callout">
           <strong>💡 The result:</strong> Your team spends less time on admin and more time closing deals. Pipeline visibility means you'll never forget a follow-up again.
         </div>
       </div>
-      <div class="benefits-img">
+      <div class="platform-img">
         <img src="assets/05_schedule.png" alt="TourPilot AI scheduling and timeline management" loading="lazy">
       </div>
     </div>
@@ -143,24 +161,24 @@
 </section>
 
 <!-- PLATFORM: Finance & Invoicing -->
-<section class="benefits-section" style="background:var(--bg);">
+<section class="platform-section alt-bg">
   <div class="container">
-    <div class="benefits-grid reverse reveal">
-      <div class="benefits-text">
+    <div class="platform-grid reverse reveal">
+      <div class="platform-text">
         <span class="section-label">Finance & Invoicing</span>
         <h3>Know your margins in real time — not after the trip</h3>
         <p>Stop guessing your profitability. TourPilot AI calculates gross margins, net margins, and markup as you build itineraries. Generate branded invoices and payment reminders in seconds — synced to Xero automatically.</p>
-        <ul class="benefits-list">
+        <ul class="check-list">
           <li>Live margin calculator as you add services to itineraries</li>
           <li>Multi-currency support with automatic exchange rates</li>
           <li>One-click Xero synchronization for invoices and credit notes</li>
           <li>Payment tracking dashboard with automated overdue alerts</li>
         </ul>
-        <div class="benefit-callout">
+        <div class="result-callout">
           <strong>💡 The result:</strong> You'll spot unprofitable bookings before they happen, not after. Finance moves from a bottleneck to a competitive advantage.
         </div>
       </div>
-      <div class="benefits-img">
+      <div class="platform-img">
         <img src="assets/08_finance_dashboard.png" alt="TourPilot AI financial dashboard with margin analytics" loading="lazy">
       </div>
     </div>
@@ -168,25 +186,25 @@
 </section>
 
 <!-- PLATFORM: Supplier Management -->
-<section class="benefits-section">
+<section class="platform-section">
   <div class="container">
-    <div class="benefits-grid reveal">
-      <div class="benefits-text">
+    <div class="platform-grid reveal">
+      <div class="platform-text">
         <span class="section-label">Supplier Network</span>
         <h3>Your entire supplier catalog — structured, searchable, always current</h3>
-        <p>Hotels, transporters, guides, activities — all managed from one centralized directory. Each supplier profile includes pricing tiers, seasonal rates, contract terms, and full booking history. No more digging through old emails for a room rate.</p>
-        <ul class="benefits-list">
+        <p>Hotels, transporters, guides, activities — all managed from one centralized directory. Each supplier profile includes pricing tiers, seasonal rates, contract terms, and full booking history.</p>
+        <ul class="check-list">
           <li>Tiered product catalogs with pax-based pricing rules</li>
           <li>Bulk import/export with CSV and Excel compatibility</li>
           <li>Supplier performance tracking and booking history</li>
           <li>AI-powered fuzzy matching for automatic supplier resolution</li>
         </ul>
-        <div class="benefit-callout">
+        <div class="result-callout">
           <strong>💡 The result:</strong> Building a quote used to require checking 5 different spreadsheets. Now your team finds the right supplier and price in seconds.
         </div>
       </div>
-      <div class="benefits-img">
-        <img src="assets/03_supplier_directory.png" alt="TourPilot AI supplier directory with structured product catalogs" loading="lazy">
+      <div class="platform-img">
+        <img src="assets/03_supplier_directory.png" alt="TourPilot AI supplier directory" loading="lazy">
       </div>
     </div>
   </div>
@@ -194,11 +212,12 @@
 
 <!-- AI ADVANTAGE -->
 <section class="ai-section">
-  <div class="container">
+  <div class="ai-pattern"></div>
+  <div class="container" style="position:relative;z-index:1;">
     <div class="section-header reveal">
-      <span class="section-label">AI-Powered</span>
-      <h2 class="section-title">Your AI co-pilot for travel operations</h2>
-      <p class="section-desc">Powered by Google Gemini, TourPilot AI doesn't just store data — it thinks alongside your team.</p>
+      <span class="section-label" style="color:var(--gold);">AI-Powered</span>
+      <h2 class="section-title" style="color:#fff;">Your AI co-pilot for travel operations</h2>
+      <p class="section-desc" style="color:rgba(255,255,255,0.65);">Powered by Google Gemini, TourPilot AI doesn't just store data — it thinks alongside your team.</p>
     </div>
     <div class="ai-grid">
       <div class="ai-card reveal">
@@ -234,67 +253,25 @@
       <p class="section-desc">From first enquiry to final invoice, TourPilot AI covers every step of the travel management lifecycle.</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">📊</div>
-        <h3>Sales Dashboard</h3>
-        <p>Revenue, conversion rates, pipeline health — filtered by date, team member, or segment. See your entire business at a glance.</p>
-      </div>
-      <div class="feature-card reveal reveal-d1">
-        <div class="feature-icon">🗓️</div>
-        <h3>Itinerary Builder</h3>
-        <p>Drag-and-drop day-by-day creation with automatic costing, margin calculations, and instant proposal generation.</p>
-      </div>
-      <div class="feature-card reveal reveal-d2">
-        <div class="feature-icon">📄</div>
-        <h3>Proposal Generator</h3>
-        <p>One-click branded PDF proposals with day-by-day breakdowns, curated images, and dynamic pricing tables.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">💰</div>
-        <h3>Financial Management</h3>
-        <p>Complete P&L per booking, cost tracking, margin control, and Xero integration for seamless invoicing.</p>
-      </div>
-      <div class="feature-card reveal reveal-d1">
-        <div class="feature-icon">📧</div>
-        <h3>Communication Hub</h3>
-        <p>Unified Microsoft 365 email inbox — send, receive, and archive correspondence within each enquiry context.</p>
-      </div>
-      <div class="feature-card reveal reveal-d2">
-        <div class="feature-icon">🤖</div>
-        <h3>AI Assistant</h3>
-        <p>Auto-generate itineraries from briefs, draft emails, match suppliers, and create branded content on demand.</p>
-      </div>
-      <div class="feature-card reveal">
-        <div class="feature-icon">🚐</div>
-        <h3>Operations & Scheduling</h3>
-        <p>Visual timeline for your entire operation. Assign drivers, guides, track confirmations, and manage option holds.</p>
-      </div>
-      <div class="feature-card reveal reveal-d1">
-        <div class="feature-icon">👥</div>
-        <h3>Supplier Directory</h3>
-        <p>Centralized database with tiered pricing, seasonal rates, pax-based structures, and full search capabilities.</p>
-      </div>
-      <div class="feature-card reveal reveal-d2">
-        <div class="feature-icon">🔐</div>
-        <h3>Enterprise Security</h3>
-        <p>Row-level data isolation, CSP headers, HSTS, complete audit trails, and GDPR-aware data handling.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <p style="font-size:0.92rem;color:var(--text-muted);max-width:560px;margin:0 auto;line-height:1.7;">
-        <strong style="color:var(--brand);">🔧 Every module is customizable.</strong> Need custom workflows, additional fields, or new modules? All features can be extended to match your business. Custom development quoted based on scope.
-      </p>
+      <div class="feature-card reveal"><div class="feature-icon">📊</div><h3>Sales Dashboard</h3><p>Revenue, conversion rates, pipeline health — filtered by date, team member, or segment.</p></div>
+      <div class="feature-card reveal reveal-d1"><div class="feature-icon">🗓️</div><h3>Itinerary Builder</h3><p>Drag-and-drop day-by-day creation with automatic costing and margin calculations.</p></div>
+      <div class="feature-card reveal reveal-d2"><div class="feature-icon">📄</div><h3>Proposal Generator</h3><p>One-click branded PDF proposals with day-by-day breakdowns and dynamic pricing.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">💰</div><h3>Financial Management</h3><p>Complete P&L per booking, cost tracking, margin control, and Xero integration.</p></div>
+      <div class="feature-card reveal reveal-d1"><div class="feature-icon">📧</div><h3>Communication Hub</h3><p>Unified Microsoft 365 email inbox — send, receive, and archive within each enquiry.</p></div>
+      <div class="feature-card reveal reveal-d2"><div class="feature-icon">🤖</div><h3>AI Assistant</h3><p>Auto-generate itineraries, draft emails, match suppliers, and create branded content.</p></div>
+      <div class="feature-card reveal"><div class="feature-icon">🚐</div><h3>Operations & Scheduling</h3><p>Visual timeline. Assign drivers, guides, track confirmations, and manage option holds.</p></div>
+      <div class="feature-card reveal reveal-d1"><div class="feature-icon">👥</div><h3>Supplier Directory</h3><p>Centralized database with tiered pricing, seasonal rates, and full search capabilities.</p></div>
+      <div class="feature-card reveal reveal-d2"><div class="feature-icon">🔐</div><h3>Enterprise Security</h3><p>Row-level data isolation, CSP headers, audit trails, and GDPR-aware data handling.</p></div>
     </div>
   </div>
 </section>
 
 <!-- INTEGRATIONS -->
-<section class="integrations" id="integrations">
+<section class="integrations-section">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label">Ecosystem</span>
       <h2 class="section-title">Connects to the tools you already use</h2>
-      <p class="section-desc">TourPilot AI integrates with industry-standard platforms. Additional integrations developed on request.</p>
     </div>
     <div class="integrations-row reveal">
       <span class="int-chip">⚡ Supabase</span>
@@ -304,51 +281,19 @@
       <span class="int-chip">🧠 Google Gemini AI</span>
       <span class="int-chip">▲ Vercel</span>
     </div>
-    <div style="text-align:center;margin-top:2rem;">
-      <p style="font-size:0.88rem;color:var(--text-muted);font-style:italic;">Need a custom integration? We can connect TourPilot AI to any API — CRM, channel manager, OTA, or accounting system.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section style="background:var(--bg-warm);border-top:1px solid var(--border-light);border-bottom:1px solid var(--border-light);">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Architecture</span>
-      <h2 class="section-title">Built on modern, scalable technology</h2>
-      <p class="section-desc">TourPilot AI is a production-ready application with enterprise-grade infrastructure. The entire codebase is documented and ready for handover.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card reveal">
-        <div class="feature-icon">⚛️</div>
-        <h3>React 19 + TypeScript</h3>
-        <p>Component-based architecture with full type safety. Over 140,000 lines of maintainable, documented code.</p>
-      </div>
-      <div class="feature-card reveal reveal-d1">
-        <div class="feature-icon">🗄️</div>
-        <h3>Supabase + PostgreSQL</h3>
-        <p>Fully managed backend with row-level security, real-time subscriptions, and serverless Edge Functions.</p>
-      </div>
-      <div class="feature-card reveal reveal-d2">
-        <div class="feature-icon">▲</div>
-        <h3>Vercel Edge Network</h3>
-        <p>Global CDN deployment with automatic SSL, serverless API routes, and sub-second page loads worldwide.</p>
-      </div>
-    </div>
+    <p class="integrations-note">Need a custom integration? We can connect TourPilot AI to any API — CRM, channel manager, OTA, or accounting system.</p>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
+<section class="pricing-section" id="pricing">
   <div class="container">
     <div class="section-header reveal">
       <span class="section-label">Acquisition</span>
       <h2 class="section-title">Choose the right path for your business</h2>
-      <p class="section-desc">Every option includes the production-ready codebase, documentation, and deployment support. Launch under your own brand in days, not months.</p>
+      <p class="section-desc">Every option includes the production-ready codebase, documentation, and deployment support.</p>
     </div>
     <div class="pricing-grid">
-
-      <!-- Starter -->
       <div class="price-card reveal">
         <div class="price-name">Starter License</div>
         <div class="price-amount">$1,499</div>
@@ -362,8 +307,6 @@
         </ul>
         <a href="#contact" class="price-btn price-btn-outline">Get Started</a>
       </div>
-
-      <!-- Growth -->
       <div class="price-card highlight reveal reveal-d1">
         <div class="price-name">Growth License</div>
         <div class="price-amount">$4,999</div>
@@ -378,8 +321,6 @@
         </ul>
         <a href="#contact" class="price-btn price-btn-primary">Get Started</a>
       </div>
-
-      <!-- Full Acquisition -->
       <div class="price-card reveal reveal-d2">
         <div class="price-name">Full Acquisition</div>
         <div class="price-amount">$18K<small>–$25K</small></div>
@@ -396,11 +337,6 @@
         <a href="#contact" class="price-btn price-btn-outline">Let's Talk</a>
       </div>
     </div>
-    <div style="text-align:center;margin-top:2.5rem;">
-      <p style="font-size:0.88rem;color:var(--text-muted);max-width:580px;margin:0 auto;line-height:1.7;">
-        All tiers include the production-ready codebase. Need custom modules or integrations? <strong style="color:var(--brand);">Custom development available at competitive rates</strong>, scoped and quoted based on your requirements.
-      </p>
-    </div>
   </div>
 </section>
 
@@ -416,34 +352,21 @@
       <div class="contact-info reveal">
         <h3>📧 Email</h3>
         <p><a href="mailto:has.oubella@yahoo.com">has.oubella@yahoo.com</a></p>
-
         <h3>⏱️ Response Time</h3>
         <p>Typically within 2–4 hours during business hours (GMT+1)</p>
-
         <h3>🌍 Based In</h3>
         <p>Morocco — serving clients globally</p>
-
         <h3>🎯 What to Expect</h3>
-        <p>Book a demo and I'll walk you through the live platform, answer technical questions, and discuss customization options for your specific use case.</p>
-
+        <p>Book a demo and I'll walk you through the live platform, answer technical questions, and discuss customization options.</p>
         <h3>🔒 Confidentiality</h3>
-        <p>All enquiries are confidential. NDA available upon request before demo access is granted.</p>
+        <p>All enquiries are confidential. NDA available upon request.</p>
       </div>
       <form class="contact-form reveal reveal-d1" id="contactForm" action="mailto:has.oubella@yahoo.com" method="POST" enctype="text/plain">
         <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Full name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@company.com" required>
-          </div>
+          <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Full name" required></div>
+          <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@company.com" required></div>
         </div>
-        <div class="form-group">
-          <label for="company">Company / Agency</label>
-          <input type="text" id="company" name="company" placeholder="Your travel company name">
-        </div>
+        <div class="form-group"><label for="company">Company / Agency</label><input type="text" id="company" name="company" placeholder="Your travel company name"></div>
         <div class="form-group">
           <label for="interest">I'm Interested In</label>
           <select id="interest" name="interest">
@@ -453,15 +376,10 @@
             <option value="Growth License — $4,999">Growth License — $4,999</option>
             <option value="Full Acquisition — $18K–$25K">Full Acquisition — $18K–$25K</option>
             <option value="Custom Development">Custom Development / Integration</option>
-            <option value="General Inquiry">General Inquiry</option>
           </select>
         </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Tell me about your business, current challenges, and what you're looking for..." rows="5"></textarea>
-        </div>
+        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your business, current challenges, and what you're looking for..." rows="5"></textarea></div>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Book a Demo →</button>
-        <p style="font-size:0.8rem;color:var(--text-muted);text-align:center;">Your message will be sent directly to my inbox. No spam, no sharing.</p>
       </form>
     </div>
   </div>
@@ -470,7 +388,7 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-brand">TourPilot<span class="brand-ai">AI</span></div>
+    <div class="footer-brand"><img src="assets/icon.png" alt="" class="footer-icon">TourPilot<span class="brand-ai">AI</span></div>
     <div class="footer-links">
       <a href="#benefits">Why TourPilot</a>
       <a href="#platform">Platform</a>
@@ -478,8 +396,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </div>
-    <p>© 2026 TourPilot AI. All rights reserved. Built with React, TypeScript & Supabase.</p>
-    <p style="margin-top:0.5rem;font-size:0.75rem;"><a href="https://tourpilotai.com" style="color:var(--brand);text-decoration:none;">tourpilotai.com</a></p>
+    <p class="footer-copy">© 2026 TourPilot AI. All rights reserved.</p>
   </div>
 </footer>
 
@@ -490,6 +407,5 @@
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
