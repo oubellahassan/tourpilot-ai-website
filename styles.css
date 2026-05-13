@@ -27,8 +27,14 @@ h1,h2,h3,.section-title,.price-amount,.hero h1{font-family:'Playfair Display',Ge
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:all .4s}
 .nav.scrolled{background:rgba(251,248,243,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border-light);box-shadow:0 1px 20px rgba(26,26,24,.04)}
 .nav-inner{max-width:1180px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{text-decoration:none}
+.nav-brand{display:flex;align-items:center;text-decoration:none}
 .nav-logo-img{height:38px}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--text);letter-spacing:-.5px}
+.logo-text em{font-style:italic;color:var(--gold-dark)}
+.logo-ai{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-left:.4rem;padding:.15rem .45rem;border:1.5px solid var(--gold);border-radius:4px;vertical-align:middle;position:relative;top:-1px}
+.footer-logo{display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+.footer-logo .logo-text{font-size:1.8rem;color:#fff}
+.footer-logo .logo-ai{color:var(--gold);border-color:var(--gold)}
 .nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none}
 .nav-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.3px;transition:color .3s}
 .nav-links a:hover{color:var(--text)}
