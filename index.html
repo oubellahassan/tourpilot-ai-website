@@ -113,6 +113,15 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-RN5C5B8R8V');
+
+    // Track form submissions as GA4 conversions
+    function trackFormSubmit(formName) {
+      gtag('event', 'generate_lead', {
+        event_category: 'engagement',
+        event_label: formName,
+        value: 1
+      });
+    }
   </script>
 </head>
 <body>
@@ -135,7 +144,7 @@
       <li><a href="#platform">Platform</a></li>
       <li><a href="#features">Features</a></li>
 
-      <li><a href="#contact" class="nav-cta">Book a Demo</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Free Demo</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -152,10 +161,41 @@
     <h1>Stop juggling spreadsheets. <br><span class="accent">Start closing trips.</span></h1>
     <p class="hero-sub">TourPilot AI replaces your scattered Excel files, email threads, and disconnected tools with one AI-powered platform — so you can build itineraries faster, manage suppliers smarter, and grow revenue.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Book a Free Demo →</a>
+      <a href="#contact" class="btn btn-primary">Get a Free Demo →</a>
       <a href="#platform" class="btn btn-outline-hero">See How It Works</a>
     </div>
+    <div class="hero-trust">
+      <span class="trust-item">✓ Free 12-min walkthrough</span>
+      <span class="trust-item">✓ No credit card</span>
+      <span class="trust-item">✓ Setup in 48 hours</span>
+    </div>
+  </div>
+</section>
 
+<!-- SOCIAL PROOF BAR -->
+<section class="proof-bar">
+  <div class="container">
+    <div class="proof-content">
+      <div class="proof-stat">
+        <span class="proof-number">70%</span>
+        <span class="proof-label">Less time<br>on admin</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <span class="proof-number">25 min</span>
+        <span class="proof-label">To build a<br>full itinerary</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <span class="proof-number">6+</span>
+        <span class="proof-label">Luxury proposal<br>templates</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <span class="proof-number">1</span>
+        <span class="proof-label">Platform replaces<br>all your tools</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -498,10 +538,11 @@
 <section class="cta-band">
   <div class="container">
     <div class="cta-content reveal">
-      <span class="section-label">Built for Serious Operators</span>
-      <h2 class="cta-headline">Stop juggling spreadsheets.<br>Start running a travel empire.</h2>
-      <p class="cta-subtext">TourPilot AI replaces 6+ tools with one intelligent platform — so you can focus on crafting unforgettable journeys, not fighting with software.</p>
-      <a href="#contact" class="btn btn-primary">Book Your Private Demo →</a>
+      <span class="section-label">Limited Early Access</span>
+      <h2 class="cta-headline">We're onboarding 10 DMCs this quarter.<br>Is yours one of them?</h2>
+      <p class="cta-subtext">Each onboarding includes white-glove setup, data migration, and a dedicated success manager. We customize the platform to your exact workflow — but we can only handle 10 at a time.</p>
+      <a href="#contact" class="btn btn-primary">Request Your Spot →</a>
+      <p class="cta-urgency">⚡ 4 spots remaining for Q3 2026</p>
     </div>
   </div>
 </section>
@@ -511,31 +552,40 @@
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="section-header reveal">
-      <span class="section-label">Get in Touch</span>
-      <h2 class="section-title">Ready to transform your travel business?</h2>
-      <p class="section-desc">Whether you want a walkthrough, have questions, or are ready to acquire — I'd love to hear from you.</p>
+      <span class="section-label">Get Started</span>
+      <h2 class="section-title">See TourPilot AI in action — in 12 minutes</h2>
+      <p class="section-desc">No commitment, no sales pressure. Just a quick walkthrough tailored to your type of operation.</p>
     </div>
     <form class="contact-form-centered reveal" id="contactForm" action="https://formspree.io/f/xvzlyedn" method="POST">
+      <input type="hidden" name="_subject" value="🔥 New TourPilot AI Demo Request">
+      <input type="hidden" name="interest" value="Platform Demo">
       <div class="form-row">
-        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Full name" required></div>
-        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@company.com" required></div>
+        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="e.g. Sarah Johnson" required></div>
+        <div class="form-group"><label for="email">Work Email</label><input type="email" id="email" name="email" placeholder="sarah@yourdmc.com" required></div>
       </div>
-      <div class="form-group"><label for="company">Company / Agency</label><input type="text" id="company" name="company" placeholder="Your travel company name"></div>
-      <div class="form-group">
-        <label for="interest">I'm Interested In</label>
-        <select id="interest" name="interest">
-          <option value="">Select an option...</option>
-          <option value="Platform Walkthrough / Demo">Platform Walkthrough / Demo</option>
-          <option value="Starter License">Starter License</option>
-          <option value="Growth License">Growth License</option>
-          <option value="Full Acquisition">Full Acquisition</option>
-          <option value="Custom Development">Custom Development / Integration</option>
-        </select>
+      <div class="form-group"><label for="company">Company Name</label><input type="text" id="company" name="company" placeholder="e.g. Atlas Travel DMC" required></div>
+      <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+        <span class="btn-text">Get My Free Demo →</span>
+        <span class="btn-loading" style="display:none;">Sending...</span>
+      </button>
+      <div class="form-trust-signals">
+        <span>🔒 Your data is private</span>
+        <span>⚡ Response within 4 hours</span>
+        <span>🎯 12-min personalized walkthrough</span>
       </div>
-      <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell me about your business, current challenges, and what you're looking for..." rows="5"></textarea></div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message →</button>
-      <p class="form-note">All enquiries are confidential. We typically respond within 24 hours.</p>
     </form>
+
+    <div class="contact-alternatives">
+      <p class="alt-label">Prefer a direct conversation?</p>
+      <div class="alt-options">
+        <a href="https://wa.me/212662097018?text=Hi%20Hassan%2C%20I%27d%20like%20to%20learn%20more%20about%20TourPilot%20AI" target="_blank" class="alt-btn whatsapp-btn">
+          💬 WhatsApp Us
+        </a>
+        <a href="mailto:hello@tourpilotai.com?subject=TourPilot%20AI%20Demo%20Request" class="alt-btn email-btn">
+          ✉️ Email Directly
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -558,6 +608,34 @@
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">✕</button>
   <img id="lightboxImg" src="" alt="Screenshot preview">
+</div>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/212662097018?text=Hi%20Hassan%2C%20I%27d%20like%20to%20learn%20more%20about%20TourPilot%20AI" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff"><path d="M16.004 0C7.164 0 .004 7.16.004 16c0 2.82.736 5.572 2.132 8l-2.236 8.164 8.372-2.196A15.93 15.93 0 0016.004 32C24.844 32 32 24.84 32 16S24.844 0 16.004 0zm0 29.252a13.21 13.21 0 01-6.744-1.848l-.484-.288-5.016 1.316 1.34-4.892-.316-.5A13.18 13.18 0 012.756 16c0-7.304 5.944-13.248 13.248-13.248S29.248 8.696 29.248 16s-5.94 13.252-13.244 13.252zm7.264-9.924c-.4-.2-2.36-1.164-2.728-1.296-.364-.136-.632-.2-.896.2-.268.396-1.032 1.296-1.264 1.564-.232.264-.464.3-.864.1-.396-.2-1.676-.616-3.196-1.968-1.18-1.052-1.98-2.352-2.212-2.748-.232-.4-.024-.616.176-.816.18-.18.396-.464.596-.696.2-.232.264-.4.396-.664.132-.268.068-.496-.032-.696-.1-.2-.896-2.16-1.228-2.96-.324-.776-.652-.672-.896-.684l-.764-.012c-.264 0-.696.1-1.06.496-.364.396-1.396 1.364-1.396 3.328s1.428 3.86 1.628 4.124c.2.268 2.812 4.292 6.816 6.016.952.412 1.696.656 2.276.84.956.304 1.824.26 2.512.16.768-.116 2.36-.964 2.692-1.896.332-.932.332-1.732.232-1.896-.1-.168-.364-.268-.764-.464z"/></svg>
+</a>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-sticky-cta" id="mobileCta">
+  <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem;">Get Your Free Demo →</a>
+</div>
+
+<!-- EXIT INTENT POPUP -->
+<div class="exit-popup" id="exitPopup">
+  <div class="exit-popup-overlay"></div>
+  <div class="exit-popup-content">
+    <button class="exit-popup-close" id="exitClose">✕</button>
+    <div class="exit-popup-icon">🧭</div>
+    <h3>Wait — before you go</h3>
+    <p>Most DMCs waste <strong>15+ hours per week</strong> on manual operations. See how TourPilot AI eliminates that — in just 12 minutes.</p>
+    <form id="exitForm" action="https://formspree.io/f/xvzlyedn" method="POST">
+      <input type="hidden" name="_subject" value="🚨 Exit Intent Lead — TourPilot AI">
+      <input type="hidden" name="source" value="exit_intent_popup">
+      <input type="email" name="email" placeholder="Your work email" required class="exit-input">
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Me a Demo Link →</button>
+    </form>
+    <p class="exit-note">No spam. Just a personalized demo link within 4 hours.</p>
+  </div>
 </div>
 
 <script src="script.js"></script>
