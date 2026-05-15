@@ -613,7 +613,31 @@
 <!-- TAWK.TO LIVE CHAT -->
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+var Tawk_API = Tawk_API || {};
+var Tawk_LoadStart = new Date();
+
+// ═══ PRE-CHAT FORM: Require name + email before chat starts ═══
+// This ensures you can follow up even if visitor leaves
+Tawk_API.visitor = {
+  name  : '',
+  email : ''
+};
+
+Tawk_API.onLoad = function(){
+  // Enable pre-chat form — visitor must fill name & email
+  Tawk_API.setAttributes({
+    'requirePrechat' : true
+  }, function(error){});
+};
+
+// Customize the chat widget appearance
+Tawk_API.customStyle = {
+  visibility : {
+    desktop : { position : 'br', xOffset : 20, yOffset : 20 },
+    mobile  : { position : 'br', xOffset : 10, yOffset : 70 }
+  }
+};
+
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TourPilot AI — Email Sender</title>
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { padding: 20px; background: #f5f0eb; font-family: -apple-system, Arial, sans-serif; }
+
+  /* SEND PANEL */
+  .send-panel {
+    max-width: 640px; margin: 0 auto 20px; background: #fff;
+    border-radius: 12px; box-shadow: 0 2px 20px rgba(0,0,0,0.08); overflow: hidden;
+  }
+  .panel-header {
+    background: linear-gradient(135deg,#3E5C4F,#2a4338); color: #fff;
+    padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .panel-header h2 { font-size: 16px; font-weight: 600; }
+  .panel-body { padding: 16px 24px; }
+  .subject-row { margin-bottom: 16px; }
+  .subject-row label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+  .subject-row input {
+    width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 14px; font-family: inherit; color: #333;
+  }
+  .prospect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .prospect-item {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    border: 1px solid #e8e0d5; border-radius: 8px; cursor: pointer; transition: all 0.2s;
+  }
+  .prospect-item:hover { border-color: #C9995A; background: #faf7f2; }
+  .prospect-item.selected { border-color: #3E5C4F; background: #eef4f0; }
+  .prospect-item input[type="checkbox"] { accent-color: #3E5C4F; width: 16px; height: 16px; cursor: pointer; }
+  .prospect-info { flex: 1; min-width: 0; }
+  .prospect-name { font-size: 13px; font-weight: 600; color: #2c2c2c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .prospect-company { font-size: 11px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .prospect-flag { font-size: 16px; }
+  .select-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .select-bar label { font-size: 13px; color: #666; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .count-badge { background: #3E5C4F; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+  .action-buttons { display: flex; gap: 10px; }
+  .btn {
+    flex: 1; padding: 14px; border: none; border-radius: 8px; font-size: 14px;
+    font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s;
+  }
+  .btn-send { background: linear-gradient(135deg,#C9995A,#A87D42); color: #fff; }
+  .btn-send:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,153,90,0.4); }
+  .btn-copy { background: #3E5C4F; color: #fff; }
+  .btn-copy:hover { background: #2a4338; }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+  .status-msg { text-align: center; padding: 8px; font-size: 13px; color: #3E5C4F; font-weight: 600; display: none; }
+  .status-msg.show { display: block; }
+  .btn-direct { background: linear-gradient(135deg,#C9995A,#A87D42); color: #fff; width: 100%; margin-top: 10px; }
+  .btn-direct:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(201,153,90,0.4); }
+  .progress-bar { height: 4px; background: #e8e0d5; border-radius: 4px; margin-top: 12px; overflow: hidden; display: none; }
+  .progress-bar.show { display: block; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg,#3E5C4F,#C9995A); border-radius: 4px; transition: width 0.5s; width: 0; }
+  .send-log { margin-top: 12px; max-height: 160px; overflow-y: auto; font-size: 12px; font-family: monospace; display: none; }
+  .send-log.show { display: block; }
+  .log-item { padding: 4px 8px; border-radius: 4px; margin-bottom: 2px; }
+  .log-ok { background: #eef4f0; color: #2a6f3f; }
+  .log-fail { background: #fef0f0; color: #c0392b; }
+  .log-wait { background: #faf7f2; color: #888; }
+  .prospect-item.sent { background: #eef4f0; border-color: #b5d5c0; opacity: 0.7; pointer-events: none; }
+  .sent-badge { font-size: 11px; color: #2a6f3f; font-weight: 600; }
+
+  /* EMAIL PREVIEW */
+  .preview-label {
+    max-width: 640px; margin: 0 auto 8px; font-size: 11px; color: #aaa;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ SEND PANEL ═══ -->
+<div class="send-panel">
+  <div class="panel-header">
+    <h2>📤 TourPilot AI — Email Sender</h2>
+    <span style="font-size:12px;opacity:0.7">From: has.oubella@yahoo.com</span>
+  </div>
+  <div class="panel-body">
+
+    <div class="subject-row">
+      <label>Subject Line</label>
+      <input type="text" id="subjectLine" value="Your team is spending 20 hours/week on work that takes us 3">
+    </div>
+
+    <div class="select-bar">
+      <label><input type="checkbox" id="selectAll" onchange="toggleAll()"> Select All</label>
+      <span class="count-badge" id="countBadge">0 selected</span>
+    </div>
+
+    <div class="prospect-grid" id="prospectGrid"></div>
+
+    <div class="action-buttons">
+      <button class="btn btn-send" id="btnSend" onclick="openYahooMail()" disabled>📧 Open in Yahoo Mail</button>
+      <button class="btn btn-copy" onclick="copyEmailContent()">📋 Copy Email Body</button>
+    </div>
+    <button class="btn btn-direct" id="btnDirect" onclick="sendDirectly()" disabled>🚀 Send Directly (All Selected)</button>
+    <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="send-log" id="sendLog"></div>
+    <div class="status-msg" id="statusMsg"></div>
+  </div>
+</div>
+
+<!-- PREVIEW LABEL -->
+<p class="preview-label">↓ Email Preview</p>
+
+<!-- ═══ EMAIL CONTENT ═══ -->
+<div id="emailContent">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 2px 20px rgba(0,0,0,0.08);">
+  <tr>
+    <td style="background:linear-gradient(135deg,#3E5C4F 0%,#2a4338 100%);padding:40px 40px 32px;text-align:center;">
+      <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:28px;color:#C9995A;font-weight:400;letter-spacing:1px;">Tour<em style="font-style:italic;color:#e8d5b7;">Pilot</em> <span style="display:inline-block;background:#C9995A;color:#fff;font-size:11px;padding:2px 8px;border-radius:4px;vertical-align:middle;font-family:Arial,sans-serif;letter-spacing:0.5px;">AI</span></h1>
+      <p style="margin:12px 0 0;color:#a8c5b5;font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Built for Tour Operators & DMCs</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:36px 40px 0;">
+      <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#2c2c2c;font-family:Georgia,serif;">Hi,</p>
+      <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#2c2c2c;font-family:Georgia,serif;">I'm Hassan Oubella, founder of <strong style="color:#3E5C4F;">TourPilot AI</strong>. After working closely with tour operators and DMCs, one pattern became clear: talented teams are losing hours every day to fragmented tools — spreadsheets for costing, manual proposals, scattered supplier communications, and margins that only become visible weeks after the trip.</p>
+      <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#2c2c2c;font-family:Georgia,serif;">We built TourPilot AI to solve this — an all-in-one operations platform designed specifically for inbound tour operators and DMCs.</p>
+    </td>
+  </tr>
+  <tr><td style="padding:0 40px;"><div style="border-top:1px solid #e8e0d5;"></div></td></tr>
+  <tr>
+    <td style="padding:28px 40px 0;">
+      <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:20px;color:#3E5C4F;font-weight:400;">What It Replaces</h2>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">⚡</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">AI Itinerary Builder</strong><br><span style="color:#666;">Fully costed trips in 25 minutes — not 3-4 hours</span></p></td></tr></table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">✨</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">Luxury Proposals</strong><br><span style="color:#666;">Interactive flipbooks & cinematic designs — one click, no designer</span></p></td></tr></table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">🏨</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">Supplier Management</strong><br><span style="color:#666;">Rate tiers, hold deadline alerts, confirmation tracking</span></p></td></tr></table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">📊</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">Real-Time Finance</strong><br><span style="color:#666;">Margins per trip, per client, per season — instantly</span></p></td></tr></table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">📧</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">Smart Email</strong><br><span style="color:#666;">AI reads every email and files it to the right booking</span></p></td></tr></table>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:8px;"><tr><td width="36" valign="top" style="padding-top:2px;"><div style="width:28px;height:28px;background:#f0ebe3;border-radius:6px;text-align:center;line-height:28px;font-size:14px;">🔄</div></td><td style="padding-left:12px;"><p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#2c2c2c;"><strong style="color:#3E5C4F;">Fully Customizable</strong><br><span style="color:#666;">Your suppliers, your pricing, your branding, your workflow</span></p></td></tr></table>
+    </td>
+  </tr>
+  <tr><td style="padding:24px 40px 0;"><div style="border-top:1px solid #e8e0d5;"></div></td></tr>
+  <tr>
+    <td style="padding:24px 40px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#faf7f2;border-radius:10px;overflow:hidden;">
+        <tr>
+          <td width="25%" style="padding:20px 8px;text-align:center;border-right:1px solid #e8e0d5;"><p style="margin:0;font-family:Georgia,serif;font-size:24px;color:#C9995A;font-weight:700;">70%</p><p style="margin:4px 0 0;font-family:Arial,sans-serif;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Less Admin</p></td>
+          <td width="25%" style="padding:20px 8px;text-align:center;border-right:1px solid #e8e0d5;"><p style="margin:0;font-family:Georgia,serif;font-size:24px;color:#C9995A;font-weight:700;">25<span style="font-size:14px;">min</span></p><p style="margin:4px 0 0;font-family:Arial,sans-serif;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Itineraries</p></td>
+          <td width="25%" style="padding:20px 8px;text-align:center;border-right:1px solid #e8e0d5;"><p style="margin:0;font-family:Georgia,serif;font-size:24px;color:#C9995A;font-weight:700;">6+</p><p style="margin:4px 0 0;font-family:Arial,sans-serif;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Templates</p></td>
+          <td width="25%" style="padding:20px 8px;text-align:center;"><p style="margin:0;font-family:Georgia,serif;font-size:24px;color:#C9995A;font-weight:700;">48<span style="font-size:14px;">hr</span></p><p style="margin:4px 0 0;font-family:Arial,sans-serif;font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;">Setup</p></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:32px 40px 0;text-align:center;">
+      <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:#2c2c2c;font-family:Georgia,serif;">I'm offering a <strong>free 12-minute walkthrough</strong> — no commitment, just see if it fits your operation.</p>
+      <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr><td style="background:linear-gradient(135deg,#C9995A,#A87D42);border-radius:8px;padding:0;"><a href="https://tourpilotai.com" target="_blank" style="display:inline-block;padding:16px 44px;color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:600;text-decoration:none;letter-spacing:0.5px;">Book Your Free Demo →</a></td></tr></table>
+      <p style="margin:16px 0 0;font-family:Arial,sans-serif;font-size:12px;color:#999;">✓ Free walkthrough &nbsp; ✓ No credit card &nbsp; ✓ Setup in 48 hours</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:28px 40px 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0ebe3;border-radius:8px;"><tr><td style="padding:16px 20px;text-align:center;"><p style="margin:0;font-family:Arial,sans-serif;font-size:13px;color:#666;">Prefer a direct conversation? &nbsp;<a href="https://wa.me/212662097018?text=Hi%20Hassan%2C%20I%27d%20like%20to%20learn%20more%20about%20TourPilot%20AI" style="color:#25D366;font-weight:600;text-decoration:none;">💬 WhatsApp</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:hello@tourpilotai.com" style="color:#3E5C4F;font-weight:600;text-decoration:none;">✉️ Email</a></p></td></tr></table>
+    </td>
+  </tr>
+  <tr><td style="padding:28px 40px 0;"><div style="border-top:1px solid #e8e0d5;"></div></td></tr>
+  <tr>
+    <td style="padding:24px 40px 36px;">
+      <table cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="padding-right:16px;vertical-align:top;"><div style="width:48px;height:48px;background:linear-gradient(135deg,#3E5C4F,#2a4338);border-radius:50%;text-align:center;line-height:48px;color:#C9995A;font-family:Georgia,serif;font-size:20px;font-weight:700;">H</div></td>
+        <td style="vertical-align:top;">
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:#2c2c2c;">Hassan Oubella</p>
+          <p style="margin:2px 0 0;font-family:Arial,sans-serif;font-size:13px;color:#888;">Founder, TourPilot AI</p>
+          <p style="margin:6px 0 0;font-family:Arial,sans-serif;font-size:12px;color:#aaa;"><a href="https://tourpilotai.com" style="color:#3E5C4F;text-decoration:none;">tourpilotai.com</a> &nbsp;·&nbsp;<a href="https://wa.me/212662097018" style="color:#3E5C4F;text-decoration:none;">+212 662 097 018</a></p>
+        </td>
+      </tr></table>
+    </td>
+  </tr>
+</table>
+</div>
+
+<script>
+const prospects = [
+  // ═══ BATCH 1 — Already Sent ═══
+  { name: "Mustapha Dardari", company: "Originally Morocco", email: "mustapha@originallymorocco.com", flag: "🇲🇦", sent: true },
+  { name: "Bouchaib Rzane", company: "Access Morocco", email: "info@weareaccess.ma", flag: "🇲🇦", sent: true },
+  { name: "Lucas Peters", company: "Journey Beyond Travel", email: "info@journeybeyondtravel.com", flag: "🇲🇦", sent: true },
+  { name: "Andrew Nganga", company: "Safari DMC", email: "info@safaridmc.com", flag: "🇰🇪", sent: true },
+  { name: "Annie Corcoran", company: "Liberty Africa", email: "Eastafrica@liberty-int.com", flag: "🇰🇪", sent: true },
+  { name: "Go Places Africa", company: "Go Places Africa DMC", email: "travel@goplacesafricadmc.com", flag: "🇰🇪", sent: true },
+  { name: "Willem Niemeijer", company: "Khiri Travel", email: "marketing@khiri.com", flag: "🇹🇭", sent: true },
+  { name: "Petros Halvantzis", company: "Travelive", email: "travel@travelive.com", flag: "🇬🇷", sent: true },
+  { name: "Mehmet Mengu", company: "Mercan DMC", email: "info@mercandmc.com", flag: "🇹🇷", sent: true },
+  { name: "Yehia Abu El-Hassan", company: "Memphis Tours", email: "memphis@memphistours.com", flag: "🇪🇬", sent: true },
+  { name: "Ayman Abd-AlKareem", company: "Experience Jordan", email: "ayman@experiencejordan.com", flag: "🇯🇴", sent: true },
+  { name: "Danilo Cerqueira", company: "TempoVip", email: "danilo.cerqueira@tempovip.com", flag: "🇵🇹", sent: true },
+  { name: "Jonathan Gadiah", company: "Thompsons Africa", email: "jonathan.gadiah@thompsonsafrica.co.za", flag: "🇿🇦", sent: true },
+
+  // ═══ BATCH 2 — Sent May 15 ═══
+  // Morocco (MICE)
+  { name: "Destination Mgmt Morocco", company: "DMM Morocco (MICE)", email: "info@dmc-morocco.com", flag: "🇲🇦", sent: true },
+  { name: "Travel Design DMC", company: "Travel Design Marrakech", email: "sales@traveldesigndmc.com", flag: "🇲🇦", sent: true },
+  // Tanzania
+  { name: "Bushra Sultan", company: "Somak/DMC Tanzania", email: "info@dmctanzania.com", flag: "🇹🇿", sent: true },
+  { name: "Tanzania Specialist", company: "Tanzania Specialist", email: "safari@tanzaniaspecialist.com", flag: "🇹🇿", sent: true },
+  { name: "Elizabeth Ayo", company: "Mrembo Safaris", email: "info@mrembosafaris.com", flag: "🇹🇿", sent: true },
+  // Indonesia / Southeast Asia
+  { name: "Dr. Ketut Jaman", company: "Melali Bali DMC", email: "ketut.jaman@melalibalidmc.com", flag: "🇮🇩", sent: true },
+  { name: "ASIA DMC", company: "ASIA DMC (Multi-country)", email: "info@asiadmc.com", flag: "🇻🇳", sent: true },
+  // Balkans
+  { name: "Filip Stefanoski", company: "DMC Balkans", email: "filip@dmcbalkans.com", flag: "🇭🇷", sent: true },
+  { name: "Adriatic DMC", company: "Adriatic DMC Croatia", email: "Adriatic@AdriaticDMC.hr", flag: "🇭🇷", sent: true },
+  // Latin America
+  { name: "Leticia Gonzalez", company: "South American DMC", email: "leticia@southamericandestination.com", flag: "🇵🇪", sent: true },
+  { name: "Miguel Velasco", company: "Coltur Peru", email: "info@dmc-peru.com", flag: "🇵🇪", sent: false },
+  { name: "Mauricio Arévalo", company: "Costa Rica DMC", email: "info@costaricadmc.com", flag: "🇨🇷", sent: true },
+  // South Asia
+  { name: "Sri Lanka In Luxury", company: "Sri Lanka In Luxury", email: "info@srilankainluxury.com", flag: "🇱🇰", sent: true },
+  { name: "Maliya Tours", company: "Maliya Tours (SL/India)", email: "info@maliya-tours.com", flag: "🇱🇰", sent: true },
+  // Montenegro
+  { name: "Apolo Tours", company: "Apolo Tours DMC", email: "info@apolotoursdmc.com", flag: "🇲🇪", sent: true },
+
+  // ═══ BATCH 3 — Sent May 15 ═══
+  // Rwanda & Uganda
+  { name: "Thousand Hills Exp.", company: "Thousand Hills Expeditions", email: "info@thousandhills.rw", flag: "🇷🇼", sent: true },
+  { name: "Shield DMC", company: "Shield DMC (Rwanda/Uganda)", email: "info@shielddmc.com", flag: "🇷🇼", sent: true },
+  { name: "Primate Safaris", company: "Primate Safari Experiences", email: "office@primatesafaris-rwanda.com", flag: "🇷🇼", sent: true },
+  // Namibia & Southern Africa
+  { name: "Namibia DMC", company: "Namibia DMC", email: "info@namibiadmc.com", flag: "🇳🇦", sent: true },
+  { name: "SW Africa DMC", company: "SW Africa DMC", email: "info@swafrica.co.za", flag: "🇳🇦", sent: false },
+  // Georgia & Caucasus
+  { name: "MyGeorgia Travel", company: "MyGeorgia Travel", email: "tours@mygeorgia.travel", flag: "🇬🇪", sent: false },
+  { name: "TPG Georgia", company: "Travel Promotions Georgia", email: "info@promotegeorgia.com", flag: "🇬🇪", sent: false },
+  { name: "Grata DMC", company: "Grata DMC (Georgia)", email: "info@dmcgeorgia.com", flag: "🇬🇪", sent: false },
+  { name: "ESI DMC Armenia", company: "ESI DMC Armenia", email: "info@dmcarmenia.com", flag: "🇦🇲", sent: true },
+  // Zanzibar & East Africa
+  { name: "Green Inspirations", company: "Green Inspirations DMC", email: "ceo@greeninspirationsdmc.com", flag: "🇹🇿", sent: true },
+  // Nepal & Bhutan
+  { name: "KMTT Nepal", company: "Kathmandu Mountain Travel", email: "ceo@kmttnepal.com", flag: "🇳🇵", sent: false },
+  { name: "Gaj (Journey DMC)", company: "Journey DMC Bhutan", email: "gaj@journeydmc.com", flag: "🇧🇹", sent: true },
+  { name: "Explore Himalaya", company: "Explore Himalaya Travels", email: "enquiry@explorehimalaya.com", flag: "🇳🇵", sent: true },
+  // Iceland & Scandinavia
+  { name: "Nordic Luxury", company: "Nordic Luxury", email: "info@nordicluxury.is", flag: "🇮🇸", sent: false },
+  { name: "Luxury Adventures", company: "Luxury Adventures Iceland", email: "lux@lux.is", flag: "🇮🇸", sent: true },
+  // Chile & Argentina
+  { name: "Daniela Bartel", company: "Latventure (Argentina)", email: "daniela.bartel@latventure.com", flag: "🇦🇷", sent: true },
+  { name: "Roberto Bartel", company: "Latventure (Chile)", email: "roberto.bartel@latventure.com", flag: "🇨🇱", sent: true },
+  // Spain & Portugal
+  { name: "Mar Rodríguez", company: "Spain Incoming", email: "info@spainincoming.info", flag: "🇪🇸", sent: true },
+  { name: "Rui Terroso", company: "Living DMC (Portugal)", email: "info@livingdmc.com", flag: "🇵🇹", sent: false }
+];
+
+// Build grid
+const grid = document.getElementById('prospectGrid');
+prospects.forEach((p, i) => {
+  const div = document.createElement('div');
+  div.className = 'prospect-item' + (p.sent ? ' sent' : '');
+  if (!p.sent) div.onclick = (e) => { if(e.target.tagName !== 'INPUT') div.querySelector('input').click(); };
+  div.innerHTML = p.sent
+    ? `<span class="sent-badge">✅ Sent</span>
+       <div class="prospect-info"><div class="prospect-name">${p.name}</div><div class="prospect-company">${p.company} · ${p.email}</div></div>
+       <span class="prospect-flag">${p.flag}</span>`
+    : `<input type="checkbox" data-index="${i}" onchange="updateCount()">
+       <div class="prospect-info"><div class="prospect-name">${p.name}</div><div class="prospect-company">${p.company} · ${p.email}</div></div>
+       <span class="prospect-flag">${p.flag}</span>`;
+  grid.appendChild(div);
+});
+
+function updateCount() {
+  const checked = document.querySelectorAll('#prospectGrid input:checked');
+  document.getElementById('countBadge').textContent = checked.length + ' selected';
+  document.getElementById('btnSend').disabled = checked.length === 0;
+  document.getElementById('btnDirect').disabled = checked.length === 0;
+  // Update visual state
+  document.querySelectorAll('.prospect-item').forEach(item => {
+    item.classList.toggle('selected', item.querySelector('input').checked);
+  });
+  // Sync select all
+  document.getElementById('selectAll').checked = checked.length === prospects.length;
+}
+
+function toggleAll() {
+  const allChecked = document.getElementById('selectAll').checked;
+  document.querySelectorAll('#prospectGrid input').forEach(cb => cb.checked = allChecked);
+  updateCount();
+}
+
+function getSelectedEmails() {
+  const checked = document.querySelectorAll('#prospectGrid input:checked');
+  return Array.from(checked).map(cb => prospects[cb.dataset.index].email);
+}
+
+function openYahooMail() {
+  const emails = getSelectedEmails();
+  if (!emails.length) return;
+  const subject = encodeURIComponent(document.getElementById('subjectLine').value);
+  const bcc = encodeURIComponent(emails.join(','));
+  // Open Yahoo Mail compose with BCC (so recipients don't see each other)
+  const url = `https://compose.mail.yahoo.com/?to=&bcc=${bcc}&subject=${subject}`;
+  window.open(url, '_blank');
+  showStatus(`✅ Yahoo Mail opened with ${emails.length} recipients in BCC — now paste the email content`);
+}
+
+function copyEmailContent() {
+  const el = document.getElementById('emailContent');
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  try {
+    document.execCommand('copy');
+    showStatus('✅ Email content copied — paste it into the Yahoo Mail compose window (Cmd+V)');
+  } catch(e) {
+    showStatus('⚠️ Content selected — press Cmd+C to copy manually');
+  }
+}
+
+function showStatus(msg) {
+  const el = document.getElementById('statusMsg');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 8000);
+}
+
+function addLog(text, type) {
+  const log = document.getElementById('sendLog');
+  log.classList.add('show');
+  const div = document.createElement('div');
+  div.className = `log-item log-${type}`;
+  div.textContent = text;
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+async function sendDirectly() {
+  const emails = getSelectedEmails();
+  if (!emails.length) return;
+
+  const subject = document.getElementById('subjectLine').value;
+  const html = document.getElementById('emailContent').innerHTML;
+  const btn = document.getElementById('btnDirect');
+  const bar = document.getElementById('progressBar');
+  const fill = document.getElementById('progressFill');
+  const log = document.getElementById('sendLog');
+
+  // Reset
+  btn.disabled = true;
+  btn.textContent = '⏳ Sending...';
+  bar.classList.add('show');
+  log.innerHTML = '';
+  log.classList.add('show');
+  fill.style.width = '0%';
+
+  addLog(`Starting send to ${emails.length} recipient(s)...`, 'wait');
+
+  try {
+    const resp = await fetch('http://localhost:3099/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to: emails, subject, html })
+    });
+
+    const data = await resp.json();
+
+    if (data.success && data.results) {
+      let sent = 0;
+      data.results.forEach((r, i) => {
+        if (r.status === 'sent') {
+          sent++;
+          addLog(`✅ ${r.email} — Delivered`, 'ok');
+        } else {
+          addLog(`❌ ${r.email} — ${r.error || 'Failed'}`, 'fail');
+        }
+        fill.style.width = ((i + 1) / data.results.length * 100) + '%';
+      });
+      showStatus(`✅ Done! ${sent}/${emails.length} emails sent successfully`);
+      btn.textContent = `✅ ${sent} Sent!`;
+    } else {
+      throw new Error(data.error || 'Server error');
+    }
+  } catch (err) {
+    if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+      addLog('❌ Cannot connect to email server', 'fail');
+      addLog('→ Run: cd TourPilot-AI-website && node email-server.js', 'wait');
+      showStatus('⚠️ Email server not running — see instructions below the log');
+    } else {
+      addLog(`❌ Error: ${err.message}`, 'fail');
+      showStatus(`❌ Send failed: ${err.message}`);
+    }
+  }
+
+  setTimeout(() => {
+    btn.disabled = false;
+    btn.textContent = '🚀 Send Directly (All Selected)';
+  }, 4000);
+}
+</script>
+</body>
+</html>

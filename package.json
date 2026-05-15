@@ -1,0 +1,24 @@
+{
+  "name": "tourpilot-ai-website",
+  "version": "1.0.0",
+  "description": "> AI-powered tour operator & DMC software. Build itineraries, manage suppliers, automate invoicing, and close more bookings from one intelligent platform.",
+  "main": "email-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oubellahassan/tourpilot-ai-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/oubellahassan/tourpilot-ai-website/issues"
+  },
+  "homepage": "https://github.com/oubellahassan/tourpilot-ai-website#readme",
+  "dependencies": {
+    "nodemailer": "^8.0.7"
+  }
+}
