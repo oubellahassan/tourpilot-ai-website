@@ -251,7 +251,7 @@ section{padding:7rem 0;position:relative}
 .email-btn:hover{border-color:var(--gold);color:var(--gold-dark);transform:translateY(-2px)}
 
 /* FLOATING WHATSAPP */
-.whatsapp-float{position:fixed;bottom:5.5rem;right:1.8rem;z-index:90;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:all .3s;text-decoration:none}
+.whatsapp-float{position:fixed;bottom:1.4rem;right:5.5rem;z-index:90;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:all .3s;text-decoration:none}
 .whatsapp-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,.5)}
 
 /* MOBILE STICKY CTA */
